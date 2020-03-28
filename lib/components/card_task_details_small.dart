@@ -5,17 +5,15 @@ import 'package:prm_project/screens/admin/view_task_details_screen.dart';
 class CardTaskDetailsSmall extends StatelessWidget {
   final String taskName, description, comment, status;
   final int id, rating;
-  final String creatorUsername, assignedUsername;
-  final int previousTaskID;
+  final String createdByUsername, assigneeUsername;
   final String createdAt, updatedAt, endedAt;
 
   const CardTaskDetailsSmall({
     this.id,
     this.taskName,
     this.description,
-    this.creatorUsername,
-    this.assignedUsername,
-    this.previousTaskID,
+    this.createdByUsername,
+    this.assigneeUsername,
     this.comment,
     this.status,
     this.rating,
@@ -28,15 +26,13 @@ class CardTaskDetailsSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     Task _task = Task(
         taskName: taskName,
-        creatorUsername: creatorUsername,
-        assignedUsername: assignedUsername,
+        createdByUsername: createdByUsername,
+        assigneeUsername: assigneeUsername,
         description: description,
         status: status);
     return InkWell(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ViewTaskDetailsScreen(_task))),
+      onTap: () => Navigator.push(context,
+          MaterialPageRoute(builder: (context) => TaskDetailsScreen(_task))),
       child: Container(
           height: 120,
           decoration:
@@ -71,7 +67,7 @@ class CardTaskDetailsSmall extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    (creatorUsername ?? ""),
+                    (createdByUsername ?? ""),
                     style: TextStyle(fontSize: 16),
                   ),
                 ])),
@@ -87,7 +83,7 @@ class CardTaskDetailsSmall extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        (assignedUsername ?? ""),
+                        (assigneeUsername ?? ""),
                         style: TextStyle(fontSize: 16),
                       ),
                     ])),
@@ -104,19 +100,12 @@ class CardTaskDetailsSmall extends StatelessWidget {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.purple)
-                        ),
+                            border: Border.all(color: Colors.purple)),
                         child: Text(
                           (status ?? ""),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            backgroundColor:  status == 'Done'
-                                ? Colors.green
-                                : status == "In Progress"
-                                    ? Colors.yellow
-                                    : Colors.blue,
-
                           ),
                         ),
                       ),

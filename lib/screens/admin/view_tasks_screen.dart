@@ -30,7 +30,7 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
       ),
       body: Container(
         child: FutureBuilder<List<Task>>(
-          future: fetchTasks(),
+          future: fetchTasksDetailsList(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView(children: <Widget>[
@@ -39,8 +39,8 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
                       .map(
                         (task) => CardTaskDetailsSmall(
                           taskName: task.taskName,
-                          creatorUsername: task.creatorUsername,
-                          assignedUsername: task.assignedUsername,
+                          createdByUsername: task.createdByUsername,
+                          assigneeUsername: task.assigneeUsername,
                           status: task.status,
                           createdAt: task.createdAt,
                           description: task.description,

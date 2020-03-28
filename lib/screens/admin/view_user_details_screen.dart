@@ -11,14 +11,8 @@ class UserDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(_user.username ?? ""),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: (){}
-          ),
-          IconButton(
-            icon: Icon(Icons.update),
-            onPressed: (){}
-            ),
+          IconButton(icon: Icon(Icons.delete), onPressed: () {}),
+          IconButton(icon: Icon(Icons.update), onPressed: () {}),
         ],
       ),
       body: SafeArea(

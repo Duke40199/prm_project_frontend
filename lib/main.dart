@@ -1,13 +1,13 @@
 import 'package:prm_project/models/user_details.dart';
 import 'package:prm_project/restart_app.dart';
 import 'package:prm_project/screens/admin/admin_screen.dart';
-import 'package:prm_project/screens/admin/view_users_screen.dart';
-import 'package:prm_project/screens/admin/view_user_details_screen.dart';
-import 'package:prm_project/screens/guest/home.dart';
-import 'package:prm_project/screens/user/home.dart';
 import 'package:prm_project/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import 'screens/admin/admin_screen.dart';
+import 'screens/guest/login.dart';
+import 'utils/secure_storage.dart';
 
 void main() async {
   await DotEnv().load('.env');
@@ -30,15 +30,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Stask Manager',
+      title: 'Staff & Task Management System',
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      initialRoute: (user != null) ? '/user' : '/users',
+      initialRoute: (user != null) ? '/admin' : '/guest',
       routes: {
-        '/user': (context) => UserHomeScreen(),
-        '/guest': (context) => GuestHomeScreen(),
-        '/users': (context) => AdminScreen(),
+        '/admin': (context) => FutureBuilder<UserDetails>(
+            future: getUserFromToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData)
+                return AdminScreen();
+              else
+                return LoginScreen();
+            }),
+        '/guest': (context) => FutureBuilder<UserDetails>(
+            future: getUserFromToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData)
+                return AdminScreen();
+              else
+                return LoginScreen();
+            }),
       },
     );
   }

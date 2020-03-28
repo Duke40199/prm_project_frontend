@@ -35,8 +35,7 @@ class TextFormFieldComponent extends StatelessWidget {
                   labelText: labelText,
                 ),
                 onSaved: (String value) {
-                  // This optional block of code can be used to run
-                  // code when the user saves the form.
+                  onSaved(value);
                 },
                 maxLines: maxLines,
                 style: textStyleSubtitle,

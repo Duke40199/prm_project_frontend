@@ -1,9 +1,8 @@
-import 'package:prm_project/components/icon_text.dart';
 import 'package:flutter/material.dart';
+import 'package:getflutter/components/avatar/gf_avatar.dart';
+import 'package:getflutter/shape/gf_avatar_shape.dart';
 import 'package:prm_project/models/user.dart';
 import 'package:prm_project/screens/admin/view_user_details_screen.dart';
-
-import '../style/style.dart';
 
 class CardUserDetailsSmall extends StatelessWidget {
   final String username;
@@ -31,7 +30,7 @@ class CardUserDetailsSmall extends StatelessWidget {
         username: username,
         fullname: fullname,
         phoneNumber: phoneNumber,
-        avatar: avatarUrl,
+        avatarUrl: avatarUrl,
         email: email,
         role: role,
         createdAt: createdAt);
@@ -39,74 +38,93 @@ class CardUserDetailsSmall extends StatelessWidget {
       onTap: () => Navigator.push(context,
           MaterialPageRoute(builder: (context) => UserDetailsScreen(_user))),
       child: Container(
-          height: 150,
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                Container(
-                    padding: EdgeInsets.fromLTRB(160, 0, 0, 0),
-                    child: Row(children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Icon(Icons.face),
-                      ),
-                      Text(
-                        username,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ])),
-                Container(
-                    padding: EdgeInsets.fromLTRB(160, 0, 0, 0),
-                    child: Row(children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Icon(Icons.text_fields),
-                      ),
-                      Text(
-                        fullname,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ])),
-                Container(
-                    padding: EdgeInsets.fromLTRB(160, 0, 0, 0),
-                    child: Row(children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Icon(Icons.phone),
-                      ),
-                      Text(
-                        phoneNumber,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ])),
-                Container(
-                    padding: EdgeInsets.fromLTRB(160, 0, 0, 0),
-                    child: Row(children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Icon(Icons.email),
-                      ),
-                      Text(
-                        email,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ])),
-                Container(
-                    padding: EdgeInsets.fromLTRB(160, 0, 0, 0),
-                    child: Row(children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Icon(Icons.business),
-                      ),
-                      Text(
-                        role,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ])),
-              ])),
+        decoration:
+            BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
+        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: GFAvatar(
+                  radius: 80,
+                  backgroundImage: (avatarUrl != null)
+                      ? NetworkImage(avatarUrl)
+                      : AssetImage('lib/assets/images/user-default-image.png'),
+                  shape: GFAvatarShape.standard),
+              // Name & info boxes container,
+            ),
+            Container(
+                child: ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: <Widget>[
+                  Container(
+                    child: Container(
+                        padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
+                        child: Row(children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                            child: Icon(Icons.face),
+                          ),
+                          Text(
+                            (username ?? "None"),
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ])),
+                  ),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
+                      child: Row(children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Icon(Icons.text_fields),
+                        ),
+                        Text(
+                          (fullname ?? "None"),
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ])),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
+                      child: Row(children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Icon(Icons.phone),
+                        ),
+                        Text(
+                          (phoneNumber ?? "None"),
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ])),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
+                      child: Row(children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Icon(Icons.email),
+                        ),
+                        Text(
+                          (email ?? "None"),
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ])),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
+                      child: Row(children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Icon(Icons.business),
+                        ),
+                        Text(
+                          (role ?? "None"),
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ])),
+                ])),
+          ],
+        ),
+      ),
     );
   }
 }

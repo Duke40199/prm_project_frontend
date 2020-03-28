@@ -15,6 +15,10 @@ Future<String> getJwtToken() {
   return flutterSecureStorage.read(key: jwtTokenName);
 }
 
+Future<void> deleteAllFromSecureStorage() async {
+  await flutterSecureStorage.deleteAll();
+}
+
 Future<UserDetails> getUserFromToken() async {
   String token = await getJwtToken();
   if (token != null) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../admin/user_profile.dart';
 import './view_tasks_screen.dart';
 import './view_users_screen.dart';
+import 'view_tasks_screen.dart';
 
 class AdminScreen extends StatefulWidget {
   @override
@@ -13,6 +15,7 @@ class _AdminScreenState extends State<AdminScreen> {
     ViewUsersScreen(),
     ViewTasksScreen(),
     ViewTasksScreen(),
+    UserProfile(),
   ];
 
   @override
@@ -21,11 +24,10 @@ class _AdminScreenState extends State<AdminScreen> {
       body: _pageOptions[_selectedScreen],
       bottomNavigationBar: new Theme(
         data: Theme.of(context).copyWith(
-          // sets the background color of the `BottomNavigationBar`
+            // sets the background color of the `BottomNavigationBar`
             canvasColor: Colors.purple,
             // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-            textTheme: Theme
-                .of(context)
+            textTheme: Theme.of(context)
                 .textTheme
                 .copyWith(caption: new TextStyle(color: Colors.yellow))),
         child: BottomNavigationBar(
@@ -44,8 +46,6 @@ class _AdminScreenState extends State<AdminScreen> {
                 icon: Icon(Icons.table_chart), title: Text('Tasks')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person), title: Text('Profile')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.power_settings_new), title: Text('Log out')),
           ],
         ),
       ),

@@ -5,7 +5,7 @@ TextStyle textStyleDefault =
     TextStyle(fontFamily: 'Montserrat', fontSize: 18.0, color: colorTextPrimary);
 TextStyle textStyleHeading = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
-  fontSize: 26.0,
+  fontSize: 22.0,
 );
 TextStyle textStyleHeadingPrimary = textStyleHeading.copyWith(
   color: colorPrimary,

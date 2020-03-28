@@ -1,4 +1,3 @@
-import 'package:prm_project/models/post.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -83,7 +82,7 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
     storageReference.getDownloadURL().then((fileURL) {
       setState(() {
         _uploadedFileURL = fileURL;
-        widget._user.avatar = _uploadedFileURL;
+        widget._user.avatarUrl = _uploadedFileURL;
       });
     });
   }

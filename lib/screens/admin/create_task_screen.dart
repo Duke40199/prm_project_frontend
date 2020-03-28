@@ -66,9 +66,9 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         hintText: 'Select a creator',
                         labelText: 'Creator Username',
                         title: 'Creator:            ',
-                        onSaved: (creatorName) {
+                        onSaved: (createdByUsername) {
                           setState(() {
-                            _task.creatorUsername = creatorName;
+                            _task.createdByUsername = createdByUsername;
                           });
                         },
                         maxLines: 1,
@@ -83,9 +83,9 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         hintText: 'Select an assignee',
                         labelText: 'Assignee Username',
                         title: 'Assignee:         ',
-                        onSaved: (assignedUsername) {
+                        onSaved: (assigneeUsername) {
                           setState(() {
-                            _task.assignedUsername = assignedUsername;
+                            _task.assigneeUsername = assigneeUsername;
                           });
                         },
                         maxLines: 1,
@@ -101,7 +101,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           final form = _formkey.currentState;
                           if (form.validate()) {
                             form.save();
-                            bool success = true;
+                            bool success = await _task.createTask(context);
                             if (success) {
                               Navigator.pushNamed(context, '/create_post');
                             }

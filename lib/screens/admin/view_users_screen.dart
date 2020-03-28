@@ -3,6 +3,8 @@ import 'package:prm_project/components/card_user_details_small.dart';
 import 'package:prm_project/models/user.dart';
 import 'package:prm_project/screens/admin/create_user_screen.dart';
 
+import '../../models/user.dart';
+
 class ViewUsersScreen extends StatefulWidget {
   @override
   _ViewUsersScreenState createState() => _ViewUsersScreenState();
@@ -28,7 +30,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
       ),
       body: Container(
         child: FutureBuilder<List<User>>(
-          future: fetchUsers(),
+          future: fetchUsersDetailsList(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView(children: <Widget>[
@@ -38,7 +40,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                         (user) => CardUserDetailsSmall(
                           username: user.username,
                           fullname: user.fullname,
-                          avatarUrl: user.avatar,
+                          avatarUrl: user.avatarUrl,
                           phoneNumber: user.phoneNumber,
                           email: user.email,
                           role: user.role,

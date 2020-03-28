@@ -1,8 +1,10 @@
 import 'package:prm_project/components/button_confirm_component.dart';
+import 'package:prm_project/components/drop_down_role.dart';
 import 'package:prm_project/components/image_upload_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prm_project/components/text_form_field_register.dart';
+import 'package:prm_project/models/role.dart';
 import 'package:prm_project/models/user.dart';
 
 class CreateUserScreen extends StatefulWidget {
@@ -34,17 +36,14 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                         hintText: 'Enter username here',
                         labelText: 'Username',
                         title: 'Username:             ',
-                        onSaved: (username) {
-                          setState(() {
-                            _user.username = username;
-                          });
-                        },
+                        onSaved: (username) =>
+                            setState(() => _user.username = username),
                         maxLines: 1,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter the username!';
                           }
-                          return '';
+                          return null;
                         },
                       ),
                       TextFormFieldComponent(
@@ -54,6 +53,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                         onSaved: (fullname) {
                           setState(() {
                             _user.fullname = fullname;
+                            print(_user.fullname);
                           });
                         },
                         maxLines: 1,
@@ -61,7 +61,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                           if (value.isEmpty) {
                             return 'Please enter the fullname!';
                           }
-                          return '';
+                          return null;
                         },
                       ),
                       TextFormFieldComponent(
@@ -89,18 +89,19 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                           if (value.isEmpty) {
                             return 'Please enter the email!';
                           }
-                          return '';
+                          return null;
                         },
                       ),
+                      DropDownRole(),
                       ImageUploadComponent('users', _user),
                       ButtonConfirmComponent(
                         onPressed: () async {
                           final form = _formkey.currentState;
                           if (form.validate()) {
                             form.save();
-                            bool success = true;
+                            bool success = await _user.createUser(context);
                             if (success) {
-                              Navigator.pushNamed(context, '/create-user');
+                              Navigator.pushReplacementNamed(context, '/admin');
                             }
                           }
                         },
