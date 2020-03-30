@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prm_project/components/button_confirm_component.dart';
+import 'package:prm_project/components/date_picker.dart';
+import 'package:prm_project/components/drop_down_creator_assignee.dart';
 import 'package:prm_project/components/text_form_field_register.dart';
 import 'package:prm_project/models/task.dart';
 
@@ -40,7 +42,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         maxLines: 1,
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Please enter the post name!';
+                            return 'Please enter the task name!';
                           }
                           return '';
                         },
@@ -62,52 +64,28 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         },
                         textInputType: TextInputType.multiline,
                       ),
-                      TextFormFieldComponent(
-                        hintText: 'Select a creator',
-                        labelText: 'Creator Username',
-                        title: 'Creator:            ',
-                        onSaved: (createdByUsername) {
-                          setState(() {
-                            _task.createdByUsername = createdByUsername;
-                          });
-                        },
-                        maxLines: 1,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter the creator name!';
-                          }
-                          return '';
-                        },
-                      ),
-                      TextFormFieldComponent(
-                        hintText: 'Select an assignee',
-                        labelText: 'Assignee Username',
-                        title: 'Assignee:         ',
-                        onSaved: (assigneeUsername) {
-                          setState(() {
-                            _task.assigneeUsername = assigneeUsername;
-                          });
-                        },
-                        maxLines: 1,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter the creator name!';
-                          }
-                          return '';
-                        },
-                      ),
-                      ButtonConfirmComponent(
-                        onPressed: () async {
-                          final form = _formkey.currentState;
-                          if (form.validate()) {
-                            form.save();
-                            bool success = await _task.createTask(context);
-                            if (success) {
-                              Navigator.pushNamed(context, '/create_post');
+                      DropDownUser(_task),
+                      DatePicker(_task),
+
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
+                        child: ButtonConfirmComponent(
+                          onPressed: () async {
+                            print("form creator: " + _task.creatorUsername);
+                            print("form assignee: " + _task.assigneeUsername);
+                            print(_task.startDate);
+                            print(_task.endDate);
+                            final form = _formkey.currentState;
+                            if (form.validate()) {
+                              form.save();
+                              bool success = await _task.createTask(context);
+                              if (success) {
+                                Navigator.pushNamed(context, '/create_post');
+                              }
                             }
-                          }
-                        },
-                        text: 'Create a Post',
+                          },
+                          text: 'Create Post',
+                        ),
                       )
                     ],
                   )))

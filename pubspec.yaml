@@ -26,8 +26,11 @@ dependencies:
   flutter_secure_storage: ^3.3.1+1
   image_picker: ^0.6.0+17
   firebase_storage: ^3.0.3
+  intl: ^0.16.1
   # Check that you have this dependency (added in the previous step)
   firebase_core: ^0.4.0+9
+  qr_flutter: ^3.0.1
+  barcode_scan: 1.0.0
 
 
   # Add the dependency for the FlutterFire plugin for Google Analytics

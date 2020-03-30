@@ -6,7 +6,11 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.3'
+        repositories {
+            // Check that you have the following line (if not, add it):
+            google()  // Google's Maven repository
+        }
+        classpath 'com.google.gms:google-services:4.2.0'
         classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.2.0'

@@ -39,10 +39,11 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
                       .map(
                         (task) => CardTaskDetailsSmall(
                           taskName: task.taskName,
-                          createdByUsername: task.createdByUsername,
+                          creatorUsername: task.creatorUsername,
                           assigneeUsername: task.assigneeUsername,
                           status: task.status,
-                          createdAt: task.createdAt,
+                          startDate: task.startDate,
+                          endDate: task.endDate,
                           description: task.description,
                         ),
                       )

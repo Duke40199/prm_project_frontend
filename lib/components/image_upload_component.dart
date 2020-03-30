@@ -70,6 +70,7 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
         _image = image;
       });
     });
+    uploadFile(widget.location);
   }
 
   Future uploadFile(String location) async {

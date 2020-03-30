@@ -2,6 +2,7 @@ import 'package:prm_project/components/card_user_info.dart';
 import 'package:prm_project/models/user_profile_info.dart';
 import 'package:flutter/material.dart';
 
+
 class ViewUserProfile extends StatelessWidget {
   final UserProfileInfo userProfileInfo;
   final bool isCurrentUser;

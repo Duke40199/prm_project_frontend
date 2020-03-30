@@ -1,7 +1,7 @@
 import 'package:prm_project/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
-
+import 'package:qr_flutter/qr_flutter.dart';
 import '../style/style.dart';
 
 class CardUserDetailInfo extends StatelessWidget {
@@ -24,9 +24,9 @@ class CardUserDetailInfo extends StatelessWidget {
           Row(
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.fromLTRB(66, 0, 60, 10),
+                padding: const EdgeInsets.fromLTRB(97, 0, 60, 10),
                 child: GFAvatar(
-                    radius: 130,
+                    radius: 100,
                     backgroundImage: (avatarUrl != null)
                         ? NetworkImage(avatarUrl)
                         : AssetImage(
@@ -46,6 +46,10 @@ class CardUserDetailInfo extends StatelessWidget {
           ),
           Text((email ?? "None"), style: textStyleHeading),
           Text((phoneNumber ?? "None"), style: textStyleHeading),
+          QrImage(
+            data: username,
+            size: 200,
+          )
         ],
       ),
     );

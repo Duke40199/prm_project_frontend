@@ -3,6 +3,7 @@ import 'package:prm_project/models/task.dart';
 
 class TaskDetailsScreen extends StatelessWidget {
   TaskDetailsScreen(this._task);
+
   final Task _task;
 
   @override
@@ -28,7 +29,7 @@ class TaskDetailsScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text("Creator: "),
-              trailing: Text(_task.createdByUsername ?? ""),
+              trailing: Text(_task.creatorUsername ?? ""),
             ),
             ListTile(
               title: Text("Assigned To: "),
@@ -39,12 +40,20 @@ class TaskDetailsScreen extends StatelessWidget {
               trailing: Text(_task.status ?? ""),
             ),
             ListTile(
+              title: Text("Start Date:"),
+              trailing: Text(_task.startDate ?? ""),
+            ),
+            ListTile(
+              title: Text("End Date:"),
+              trailing: Text(_task.endDate ?? ""),
+            ),
+            ListTile(
               title: Text("Created At:"),
               trailing: Text(_task.createdAt ?? ""),
             ),
             ListTile(
-              title: Text("Ended At:"),
-              trailing: Text(_task.endedAt ?? ""),
+              title: Text("Updated At:"),
+              trailing: Text(_task.updatedAt ?? ""),
             ),
           ],
         ),

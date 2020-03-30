@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "827901200591",
-    "firebase_url": "https://prm_project-41e90.firebaseio.com",
-    "project_id": "prm_project-41e90",
-    "storage_bucket": "prm_project-41e90.appspot.com"
+    "project_number": "856986886794",
+    "firebase_url": "https://prm-project-f4316.firebaseio.com",
+    "project_id": "prm-project-f4316",
+    "storage_bucket": "prm-project-f4316.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:827901200591:android:5e1ee3e8f2c03ad1f68fba",
+        "mobilesdk_app_id": "1:856986886794:android:85be62793313b9cc890373",
         "android_client_info": {
           "package_name": "com.example.prm_project"
         }
       },
       "oauth_client": [
         {
-          "client_id": "827901200591-skrbekjb3iakmotdf4fegvd6lp66qa0e.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.prm_project",
-            "certificate_hash": "0e4a1317ac6dad1869f57dc3feed8bc309f0efa6"
-          }
-        },
-        {
-          "client_id": "827901200591-a1l8lcb3k4bm5116l3sqg4ulpsg4goe5.apps.googleusercontent.com",
+          "client_id": "856986886794-dleps83fne43rpgk3pvafob9m28lpla1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCySvkDkXi2qSrfFhGiff2iNjF5YelvJes"
+          "current_key": "AIzaSyDTa6wLtfUt2RF3nzuea0_nCTKxftm_xGo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "827901200591-a1l8lcb3k4bm5116l3sqg4ulpsg4goe5.apps.googleusercontent.com",
+              "client_id": "856986886794-dleps83fne43rpgk3pvafob9m28lpla1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

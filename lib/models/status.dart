@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:prm_project/utils/api_caller.dart';
@@ -11,8 +10,9 @@ class Task {
   String taskName, description, comment, status;
   String statusName;
   String creatorUsername, assigneeUsername;
-  String startDate, endDate;
+  DateTime startDate, endDate;
   String createdAt, updatedAt;
+
   Task({
     this.id,
     this.taskName,
@@ -37,8 +37,8 @@ class Task {
           'description': this.description,
           'assigneeUsername': this.assigneeUsername,
           'creatorUsername': this.creatorUsername,
-          'startDate':this.startDate,
-          'endDate':this.endDate,
+          'startDate': this.startDate.millisecondsSinceEpoch,
+          'endDate': this.endDate.millisecondsSinceEpoch,
           'status_id': 1
         },
       ),
@@ -60,8 +60,8 @@ class Task {
       creatorUsername: json['createdByUsername'] as String,
       comment: json['comment'] as String,
       status: json['statusName'] as String,
-      startDate: json['startDate'] as String,
-      endDate: json['endDate'] as String,
+      startDate: json['startDate'],
+      endDate: json['endDate'],
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
     );

@@ -19,7 +19,7 @@ class _DropDownRole extends State<DropDownRole> {
             return DropdownButton<Role>(
               items: snapshot.data
                   .map((role) => DropdownMenuItem(
-                        child: Text(role.roleName ?? "NONE"),
+                        child: Text(role ?? "NONE"),
                         value: role,
                       ))
                   .toList(),

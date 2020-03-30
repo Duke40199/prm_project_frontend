@@ -13,19 +13,19 @@ class User {
   String role;
   String createdAt, updatedAt;
 
-  User(
-      {this.id,
-      this.username,
-      this.fullname,
-      this.phoneNumber,
-      this.email,
-      this.avatarUrl,
-      this.role,
-      this.createdAt,
-      this.updatedAt});
+  User({this.id,
+    this.username,
+    this.fullname,
+    this.phoneNumber,
+    this.email,
+    this.avatarUrl,
+    this.role,
+    this.createdAt,
+    this.updatedAt});
 
   Future<bool> createUser(BuildContext context) async {
     print("fullname:" + this.fullname);
+    print("avatarUrl" + this.avatarUrl);
     final http.Response response = await apiCaller.post(
       route: apiRoutes.createRoute(apiRoutes.createUser),
       body: jsonEncode(
@@ -36,13 +36,13 @@ class User {
           'password': 'admin',
           'confirmPassword': 'admin',
           'phoneNumber': this.phoneNumber,
+          'avatarUrl': this.avatarUrl,
           'roleId': 1
         },
       ),
     );
     bool success = response.statusCode == 200;
-    if (success) {
-    } else {
+    if (success) {} else {
       print(json.decode(response.body));
     }
     return success;
@@ -64,10 +64,10 @@ class User {
 
 Future<List<User>> fetchUsersDetailsList() async {
   final http.Response response =
-      await apiCaller.get(route: apiRoutes.createRoute(apiRoutes.getUsers));
+  await apiCaller.get(route: apiRoutes.createRoute(apiRoutes.getUsers));
   if (response.statusCode == 200) {
     var userDetailsListJson =
-        await json.decode(response.body)['message'] as List;
+    await json.decode(response.body)['message'] as List;
     return userDetailsListJson
         .map((userDetails) => User.fromJson(userDetails))
         .toList();

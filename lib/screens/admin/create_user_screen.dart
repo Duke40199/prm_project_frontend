@@ -96,6 +96,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       ImageUploadComponent('users', _user),
                       ButtonConfirmComponent(
                         onPressed: () async {
+                          print("avatarURL:" + _user.avatarUrl);
                           final form = _formkey.currentState;
                           if (form.validate()) {
                             form.save();

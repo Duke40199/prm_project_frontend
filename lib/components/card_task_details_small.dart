@@ -5,31 +5,36 @@ import 'package:prm_project/screens/admin/view_task_details_screen.dart';
 class CardTaskDetailsSmall extends StatelessWidget {
   final String taskName, description, comment, status;
   final int id, rating;
-  final String createdByUsername, assigneeUsername;
-  final String createdAt, updatedAt, endedAt;
+  final String creatorUsername, assigneeUsername;
+  final String createdAt, updatedAt;
+  final String startDate, endDate;
 
   const CardTaskDetailsSmall({
     this.id,
     this.taskName,
     this.description,
-    this.createdByUsername,
+    this.creatorUsername,
     this.assigneeUsername,
     this.comment,
     this.status,
     this.rating,
     this.createdAt,
     this.updatedAt,
-    this.endedAt,
+    this.startDate,
+    this.endDate,
   });
 
   @override
   Widget build(BuildContext context) {
     Task _task = Task(
-        taskName: taskName,
-        createdByUsername: createdByUsername,
-        assigneeUsername: assigneeUsername,
-        description: description,
-        status: status);
+      taskName: taskName,
+      creatorUsername: creatorUsername,
+      assigneeUsername: assigneeUsername,
+      description: description,
+      status: status,
+      startDate: startDate,
+      endDate: endDate,
+    );
     return InkWell(
       onTap: () => Navigator.push(context,
           MaterialPageRoute(builder: (context) => TaskDetailsScreen(_task))),
@@ -67,7 +72,7 @@ class CardTaskDetailsSmall extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    (createdByUsername ?? ""),
+                    (creatorUsername ?? ""),
                     style: TextStyle(fontSize: 16),
                   ),
                 ])),
@@ -116,13 +121,13 @@ class CardTaskDetailsSmall extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                         child: Text(
-                          'Created at:   ',
+                          'Start date:   ',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                       ),
                       Text(
-                        (createdAt ?? "Date"),
+                        (startDate ?? "Date"),
                         style: TextStyle(fontSize: 16),
                       ),
                     ])),
