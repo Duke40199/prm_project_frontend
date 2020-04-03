@@ -6,6 +6,7 @@ class CardTaskDetailsSmall extends StatelessWidget {
   final String taskName, description, comment, status;
   final int id, rating;
   final String creatorUsername, assigneeUsername;
+  final String imageUrl;
   final String createdAt, updatedAt;
   final String startDate, endDate;
 
@@ -22,24 +23,26 @@ class CardTaskDetailsSmall extends StatelessWidget {
     this.updatedAt,
     this.startDate,
     this.endDate,
+    this.imageUrl,
   });
 
   @override
   Widget build(BuildContext context) {
     Task _task = Task(
-      taskName: taskName,
-      creatorUsername: creatorUsername,
-      assigneeUsername: assigneeUsername,
-      description: description,
-      status: status,
-      startDate: startDate,
-      endDate: endDate,
-    );
+        id: id,
+        taskName: taskName,
+        creatorUsername: creatorUsername,
+        assigneeUsername: assigneeUsername,
+        description: description,
+        status: status,
+        startDate: startDate,
+        endDate: endDate,
+        imageUrl: imageUrl);
     return InkWell(
       onTap: () => Navigator.push(context,
           MaterialPageRoute(builder: (context) => TaskDetailsScreen(_task))),
       child: Container(
-          height: 120,
+          height: 140,
           decoration:
               BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -127,7 +130,23 @@ class CardTaskDetailsSmall extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        (startDate ?? "Date"),
+                        (startDate ?? "None"),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ])),
+                Container(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Row(children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Text(
+                          'End date:     ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ),
+                      Text(
+                        (endDate ?? "None"),
                         style: TextStyle(fontSize: 16),
                       ),
                     ])),

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../utils/api_caller.dart';
 import '../utils/api_routes.dart';
@@ -11,21 +11,25 @@ class User {
   String id;
   String avatarUrl;
   String role;
+  int roleId;
   String createdAt, updatedAt;
 
-  User({this.id,
-    this.username,
-    this.fullname,
-    this.phoneNumber,
-    this.email,
-    this.avatarUrl,
-    this.role,
-    this.createdAt,
-    this.updatedAt});
+  User(
+      {this.id,
+      this.username,
+      this.fullname,
+      this.phoneNumber,
+      this.email,
+      this.avatarUrl,
+      this.role,
+      this.roleId,
+      this.createdAt,
+      this.updatedAt});
 
   Future<bool> createUser(BuildContext context) async {
     print("fullname:" + this.fullname);
     print("avatarUrl" + this.avatarUrl);
+    print("===============roleID: " + this.roleId.toString());
     final http.Response response = await apiCaller.post(
       route: apiRoutes.createRoute(apiRoutes.createUser),
       body: jsonEncode(
@@ -37,12 +41,13 @@ class User {
           'confirmPassword': 'admin',
           'phoneNumber': this.phoneNumber,
           'avatarUrl': this.avatarUrl,
-          'roleId': 1
+          'roleId': this.roleId,
         },
       ),
     );
     bool success = response.statusCode == 200;
-    if (success) {} else {
+    if (success) {
+    } else {
       print(json.decode(response.body));
     }
     return success;
@@ -64,10 +69,24 @@ class User {
 
 Future<List<User>> fetchUsersDetailsList() async {
   final http.Response response =
-  await apiCaller.get(route: apiRoutes.createRoute(apiRoutes.getUsers));
+      await apiCaller.get(route: apiRoutes.createRoute(apiRoutes.getUsers));
   if (response.statusCode == 200) {
     var userDetailsListJson =
-    await json.decode(response.body)['message'] as List;
+        await json.decode(response.body)['message'] as List;
+    return userDetailsListJson
+        .map((userDetails) => User.fromJson(userDetails))
+        .toList();
+  } else {
+    return null;
+  }
+}
+
+List<User> fetchUsersDetailsListSync() {
+  final http.Response response =
+      apiCaller.get(route: apiRoutes.createRoute(apiRoutes.getUsers));
+  if (response.statusCode == 200) {
+    var userDetailsListJson = json.decode(response.body)['message'] as List;
+    print(userDetailsListJson);
     return userDetailsListJson
         .map((userDetails) => User.fromJson(userDetails))
         .toList();

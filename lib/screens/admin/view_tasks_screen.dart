@@ -28,39 +28,92 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
           ),
         ],
       ),
-      body: Container(
-        child: FutureBuilder<List<Task>>(
-          future: fetchTasksDetailsList(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return ListView(children: <Widget>[
-                Column(
-                  children: snapshot.data
-                      .map(
-                        (task) => CardTaskDetailsSmall(
-                          taskName: task.taskName,
-                          creatorUsername: task.creatorUsername,
-                          assigneeUsername: task.assigneeUsername,
-                          status: task.status,
-                          startDate: task.startDate,
-                          endDate: task.endDate,
-                          description: task.description,
-                        ),
-                      )
-                      .toList(),
-                ),
-              ]);
-            } else if (snapshot.hasError) {
-              return Text(snapshot.error);
-            } else if (snapshot.connectionState == ConnectionState.done) {
-              return Text('Unable to fetch lastest task');
-            } else
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-          },
+      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Text(
+            'Tasks created by user',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
         ),
-      ),
+        Flexible(
+          child: FutureBuilder<List<Task>>(
+            future: fetchCreatorTasksDetailsList(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView(children: <Widget>[
+                  Column(
+                    children: snapshot.data
+                        .map(
+                          (task) => CardTaskDetailsSmall(
+                            id: task.id,
+                            taskName: task.taskName,
+                            creatorUsername: task.creatorUsername,
+                            assigneeUsername: task.assigneeUsername,
+                            status: task.status,
+                            startDate: task.startDate,
+                            endDate: task.endDate,
+                            description: task.description,
+                            imageUrl: task.imageUrl,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ]);
+              } else if (snapshot.hasError) {
+                return Text(snapshot.error);
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return Text('Unable to fetch lastest task');
+              } else
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Text(
+            'Tasks assigned to user',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Flexible(
+          child: FutureBuilder<List<Task>>(
+            future: fetchAssigneeTasksDetailsList(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView(children: <Widget>[
+                  Column(
+                    children: snapshot.data
+                        .map(
+                          (task) => CardTaskDetailsSmall(
+                            id: task.id,
+                            taskName: task.taskName,
+                            creatorUsername: task.creatorUsername,
+                            assigneeUsername: task.assigneeUsername,
+                            status: task.status,
+                            startDate: task.startDate,
+                            endDate: task.endDate,
+                            description: task.description,
+                            imageUrl: task.imageUrl,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ]);
+              } else if (snapshot.hasError) {
+                return Text(snapshot.error);
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return Text('Unable to fetch lastest task');
+              } else
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+            },
+          ),
+        ),
+      ]),
     );
   }
 }

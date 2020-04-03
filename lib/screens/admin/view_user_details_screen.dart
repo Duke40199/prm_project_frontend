@@ -38,14 +38,6 @@ class UserDetailsScreen extends StatelessWidget {
               title: Text("Role:"),
               trailing: Text(_user.role ?? ""),
             ),
-            ListTile(
-              title: Text("Created at:"),
-              trailing: Text(_user.createdAt ?? ""),
-            ),
-            ListTile(
-              title: Text("Updated at:"),
-              trailing: Text(_user.updatedAt ?? ""),
-            ),
           ],
         ),
       ),

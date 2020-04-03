@@ -1,6 +1,5 @@
 import 'package:prm_project/components/button_confirm_component.dart';
 import 'package:prm_project/components/image_upload_component.dart';
-import 'package:prm_project/models/post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prm_project/components/text_form_field_register.dart';
@@ -13,7 +12,6 @@ class EditUserScreen extends StatefulWidget {
 
 class _EditUserScreenState extends State<EditUserScreen> {
   final _formkey = GlobalKey<FormState>();
-  final _post = Post();
   final _user = User();
 
   @override
@@ -95,23 +93,6 @@ class _EditUserScreenState extends State<EditUserScreen> {
                         },
                       ),
                       ImageUploadComponent('users', _user),
-                      TextFormFieldComponent(
-                        hintText: 'A short introduction of the dish',
-                        labelText: 'Description',
-                        title: 'Description:          ',
-                        onSaved: (description) {
-                          setState(() {
-                            _post.description = description;
-                          });
-                        },
-                        validator: (description) {
-                          if (description.isEmpty) {
-                            return 'Please enter description';
-                          }
-                          return '';
-                        },
-                        textInputType: TextInputType.multiline,
-                      ),
                       ButtonConfirmComponent(
                         onPressed: () async {
                           final form = _formkey.currentState;
@@ -119,7 +100,7 @@ class _EditUserScreenState extends State<EditUserScreen> {
                             form.save();
                             bool success = true;
                             if (success) {
-                              Navigator.pushNamed(context, '/create_post');
+                              Navigator.pushNamed(context, '/admin');
                             }
                           }
                         },

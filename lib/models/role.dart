@@ -5,13 +5,13 @@ import '../utils/api_routes.dart';
 import 'package:http/http.dart' as http;
 
 class Role {
-  String id;
+  int id;
   String roleName;
 
   Role({this.id, this.roleName});
 
   factory Role.fromJson(dynamic json) {
-    return Role(id: json['id'] as String, roleName: json['roleName'] as String);
+    return Role(id: json['id'] as int, roleName: json['roleName'] as String);
   }
 }
 

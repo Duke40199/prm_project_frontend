@@ -1,4 +1,3 @@
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:prm_project/components/card_user_details_small.dart';
 import 'package:prm_project/models/user.dart';
@@ -26,10 +25,6 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                 MaterialPageRoute(builder: (context) => CreateUserScreen()),
               );
             },
-          ),
-          IconButton(
-            icon: Icon(Icons.select_all),
-            onPressed: () {},
           ),
         ],
       ),

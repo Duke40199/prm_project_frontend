@@ -30,6 +30,12 @@ class TextFormFieldComponent extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0.0),
               child: TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'This field cannot be empty!';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   hintText: hintText,
                   labelText: labelText,

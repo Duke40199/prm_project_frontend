@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prm_project/screens/admin/review_history_screen.dart';
+import 'package:prm_project/screens/admin/view_reviews_screen.dart';
 import '../admin/user_profile.dart';
 import './view_tasks_screen.dart';
 import './view_users_screen.dart';
@@ -14,7 +16,8 @@ class _AdminScreenState extends State<AdminScreen> {
   final _pageOptions = [
     ViewUsersScreen(),
     ViewTasksScreen(),
-    ViewTasksScreen(),
+    ViewReviewsScreen(),
+    ReviewHistoryScreen(),
     UserProfile(),
   ];
 
@@ -29,7 +32,7 @@ class _AdminScreenState extends State<AdminScreen> {
             // sets the active color of the `BottomNavigationBar` if `Brightness` is light
             textTheme: Theme.of(context)
                 .textTheme
-                .copyWith(caption: new TextStyle(color: Colors.yellow))),
+                .copyWith(caption: new TextStyle(color: Colors.white))),
         child: BottomNavigationBar(
           currentIndex: _selectedScreen,
           onTap: (int index) {
@@ -41,11 +44,14 @@ class _AdminScreenState extends State<AdminScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.contacts), title: Text('Users')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.group), title: Text('Groups')),
-            BottomNavigationBarItem(
                 icon: Icon(Icons.table_chart), title: Text('Tasks')),
             BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_today), title: Text('Reviews')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.history), title: Text('History')),
+            BottomNavigationBarItem(
                 icon: Icon(Icons.person), title: Text('Profile')),
+
           ],
         ),
       ),

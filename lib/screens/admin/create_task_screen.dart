@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prm_project/components/button_confirm_component.dart';
 import 'package:prm_project/components/date_picker.dart';
 import 'package:prm_project/components/drop_down_creator_assignee.dart';
+import 'package:prm_project/components/drop_down_status.dart';
 import 'package:prm_project/components/text_form_field_register.dart';
 import 'package:prm_project/models/task.dart';
 
@@ -35,9 +36,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         labelText: 'Name',
                         title: 'Task Name:     ',
                         onSaved: (taskName) {
-                          setState(() {
-                            _task.taskName = taskName;
-                          });
+                          _task.taskName = taskName;
                         },
                         maxLines: 1,
                         validator: (value) {
@@ -52,9 +51,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         labelText: 'Description',
                         title: 'Description:     ',
                         onSaved: (description) {
-                          setState(() {
-                            _task.description = description;
-                          });
+                          _task.description = description;
                         },
                         validator: (description) {
                           if (description.isEmpty) {
@@ -65,22 +62,17 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         textInputType: TextInputType.multiline,
                       ),
                       DropDownUser(_task),
+                      DropDownStatus(_task),
                       DatePicker(_task),
-
                       Padding(
                         padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
                         child: ButtonConfirmComponent(
                           onPressed: () async {
-                            print("form creator: " + _task.creatorUsername);
-                            print("form assignee: " + _task.assigneeUsername);
-                            print(_task.startDate);
-                            print(_task.endDate);
-                            final form = _formkey.currentState;
-                            if (form.validate()) {
-                              form.save();
+                            if (_formkey.currentState.validate()) {
+                              _formkey.currentState.save();
                               bool success = await _task.createTask(context);
                               if (success) {
-                                Navigator.pushNamed(context, '/create_post');
+                                Navigator.pushNamed(context, '/admin');
                               }
                             }
                           },

@@ -1,1 +1,0 @@
-String fallbackPostLink = 'lib/assets/images/defaultImg.jpeg';

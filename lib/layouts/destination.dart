@@ -1,5 +1,4 @@
 import 'package:prm_project/classes/view_navigation_observer.dart';
-import 'package:prm_project/screens/guest/explore.dart';
 import 'package:prm_project/style/style.dart';
 import 'package:flutter/material.dart';
 import '../classes/destination.dart';
@@ -28,9 +27,6 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         switch (settings.name) {
           case '/':
             body = widget.destination.component;
-            break;
-          default:
-            body = ExploreScreen();
             break;
         }
         return MaterialPageRoute(
